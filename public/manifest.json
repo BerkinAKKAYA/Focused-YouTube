@@ -1,0 +1,17 @@
+{
+    "short_name": "FocusedYouTube",
+    "name": "FocusedYouTube: YouTube With Bookmarks",
+    "description": "YouTube Without Distractions, With Bookmarks",
+    "icons": [
+        {
+            "src": "/img/favicon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#000",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#fff"
+}

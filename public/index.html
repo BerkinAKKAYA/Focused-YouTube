@@ -5,10 +5,13 @@
 	<meta name='viewport' content='width=device-width,initial-scale=1'>
 	<meta name="description" content="Youtube without distractions, with bookmarks.">
 	<meta name="keywords" content="YouTube, Focused, Bookmarks">
+	<meta name="theme-color" content="#fff">
+	<link rel="manifest" href="manifest.json">
 
 	<title>Focused YouTube</title>
 
 	<link rel='icon' type='image/png' href='/img/favicon.png'>
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 	<link rel='stylesheet' href='/build/bundle.css'>
 
 	<style>
@@ -25,4 +28,10 @@
 
 <body>
 </body>
+<script>
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+<noscript>Your Browser Does Not Support JavaScript!</noscript>
 </html>
