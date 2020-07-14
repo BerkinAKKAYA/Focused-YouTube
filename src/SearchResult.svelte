@@ -1,4 +1,7 @@
 <script>
+    import Toast from 'svelte-toast';
+    const toast = new Toast({position: 'bottom-center'});
+
     export let videoId;
     export let channelId;
     export let title;
@@ -15,6 +18,7 @@
         const toUpdate = {};
         toUpdate[videoId] = null;
         bookmarkRef.update(toUpdate);
+        toast.success("Bookmark Added.");
     }
 </script>
 

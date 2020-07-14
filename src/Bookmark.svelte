@@ -1,4 +1,7 @@
 <script>
+    import Toast from 'svelte-toast';
+    const toast = new Toast({position: 'bottom-center'});
+
     export let videoId;
     export let channelId;
     export let title;
@@ -15,6 +18,7 @@
         const toDelete = {};
         toDelete[videoId] = firebase.firestore.FieldValue.delete();
         bookmarkRef.update(toDelete);
+        toast.error("Bookmark Removed");
     }
 </script>
 
@@ -34,9 +38,10 @@
         align-items: center;
         text-align: center;
     }
-    h2 { font-size: 1.3em; margin-top: 20px }
+    h2 { font-size: 1.2em; margin-top: 20px }
     h4 { color: #aaa; margin: 10px 0 }
     h4:hover { color: #fff }
+    img { max-width: 100% }
     button { padding: 10px; background-color: #aaa; cursor: pointer; margin-top: 15px }
     button:hover { background-color: rgb(255, 155, 155) }
 </style> 

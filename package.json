@@ -20,6 +20,7 @@
     "sirv-cli": "^0.4.4",
     "svelte": "^3.0.0",
     "svelte-preprocess": "^4.0.7",
+    "svelte-toast": "^1.0.0",
     "sveltefire": "^0.1.5"
   },
   "dependencies": {}

@@ -56,8 +56,7 @@
     const API_KEY = PROCESS.env.YOUTUBE_API_KEY;
     const BASE_URL = "https://www.googleapis.com/youtube/v3";
 
-    let prevPageToken = "no-token",
-        nextPageToken = "no-token";
+    let prevPageToken = "no-token", nextPageToken = "no-token";
     const ResetTokens = () => { prevPageToken = nextPageToken = "no-token" }
 
     function GetPage(pageToken) {
@@ -72,7 +71,7 @@
                 nextPageToken = results.nextPageToken || "";
             });
     }
-    function Search(e) { if (e.keyCode === 13) { GetPage("") } }
+    const Search = e => e.keyCode === 13 && GetPage("")
 
     async function GetSnippetByID(id) {
         const URL = `${BASE_URL}/videos?part=snippet&key=${API_KEY}&id=${id}`;
@@ -90,6 +89,7 @@
     }
 </script>
 
+<main>
 <FirebaseApp {firebase}>
     <User let:user let:auth>
         <!-- [HEADER] SIGN IN -->
@@ -124,7 +124,6 @@
                 <SearchResults bind:searchResults { bookmarkRef } />
                 <PageButtons {GetPage} bind:prevPageToken bind:nextPageToken />
             {:else}
-                <!-- BOOKMARKS -->
                 {#if bookmarkSnippets.length > 0}
                     <Bookmarks {firebase} {bookmarkSnippets} {bookmarkRef} />
                 {:else}
@@ -135,13 +134,22 @@
     </User>
 </FirebaseApp>
 <footer><a href="https://berkinakkaya.github.io">Berkin AKKAYA</a></footer>
+</main>
 
 <style lang="scss">
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: white;
+        cursor: default;
+    }
     header {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 75px;
+        max-width: 80vw;
 
         img { height: 45px; cursor: pointer }
 
@@ -149,6 +157,7 @@
             margin: 0 100px;
             padding: 14px 16px;
             width: 350px;
+            max-width: 80%;
             background-color: #000;
             color: white;
             font-size: 1.05em;
@@ -195,7 +204,6 @@
             cursor: pointer;
         }
     }
-
-    #no-bookmarks { font-size: 1.7em; padding: 50px }
+    #no-bookmarks { font-size: 1.7em; padding: 50px; text-align: center; }
     footer { margin: 75px }
 </style>
