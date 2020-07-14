@@ -5,6 +5,7 @@
     export let channelTitle;
     export let description;
     export let thumbnails;
+    export let bookmarkRef;
 
     const videoLink = `https://www.youtube.com/watch?v=${videoId}`;
     const channelLink = `https://www.youtube.com/channel/${channelId}`;

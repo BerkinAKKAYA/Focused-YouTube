@@ -1,7 +1,9 @@
 <script>
-    import { FirebaseApp, User, Doc } from "sveltefire";
     import SearchResults from './SearchResults.svelte';
     import PageButtons from './PageButtons.svelte';
+    import Bookmarks from './Bookmarks.svelte';
+
+    import { FirebaseApp, User, Doc } from "sveltefire";
     import firebase from "firebase/app";
     import "firebase/firestore";
     import "firebase/auth";
@@ -124,30 +126,7 @@
             {:else}
                 <!-- BOOKMARKS -->
                 {#if bookmarkSnippets.length > 0}
-                    <div id="bookmarks">
-                        {#each bookmarkSnippets as bookmark}
-                        <div class="bookmark">
-                            <a href={`https://www.youtube.com/watch?v=${bookmark.id.videoId}`}>
-                                <img src={bookmark.snippet.thumbnails.medium.url} alt="thumbnail" />
-                            </a>
-                            <div class="titles">
-                                <a class="title" href={`https://www.youtube.com/watch?v=${bookmark.id.videoId}`}>
-                                    <h2>{bookmark.snippet.title}</h2>
-                                </a>
-                                <a class="channel" href={`https://www.youtube.com/channel/${bookmark.snippet.channelId}`}>
-                                    <h4>{bookmark.snippet.channelTitle}</h4>
-                                </a>
-                            </div>
-                            <button
-                                class="remove"
-                                on:click={() => {
-                                    const toDelete = {};
-                                    toDelete[bookmark.id] = firebase.firestore.FieldValue.delete();
-                                    bookmarkRef.update(toDelete);
-                                }}>REMOVE FROM BOOKMARKS</button>
-                        </div>
-                        {/each}
-                    </div>
+                    <Bookmarks {firebase} {bookmarkSnippets} {bookmarkRef} />
                 {:else}
                     <p id="no-bookmarks">YOU HAVE NO BOOKMARKS</p>
                 {/if}
@@ -164,10 +143,7 @@
         align-items: center;
         margin: 75px;
 
-        img {
-            height: 45px;
-            cursor: pointer;
-        }
+        img { height: 45px; cursor: pointer }
 
         input {
             margin: 0 100px;
@@ -220,30 +196,6 @@
         }
     }
 
-    #bookmarks {
-        width: 1000px;
-        max-width: 80vw;
-
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 20px;
-        row-gap: 20px;
-
-        .bookmark {
-            .title h2 { font-size: 1.3em; padding: 20px 0 10px 0 }
-            .channel { color: #aaa }
-            .channel:hover { color: #fff }
-            .remove { margin-top: 10px; padding: 5px }
-        }
-    }
-    #no-bookmarks {
-        text-align: center;
-        font-size: 1.7em;
-        padding: 50px 0;
-    }
-    footer {
-        text-align: center;
-        font-size: 1.1em;
-        margin: 75px;
-    }
+    #no-bookmarks { font-size: 1.7em; padding: 50px }
+    footer { margin: 75px }
 </style>
