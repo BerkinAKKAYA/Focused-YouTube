@@ -2,4 +2,7 @@
 
 YouTube without distractions, with bookmarks.
 
-https://berkinakkaya.github.io
+[Try It](http://focused-yt.web.app/)
+
+---
+Created by [Berkin AKKAYA](https://berkinakkaya.github.io)
